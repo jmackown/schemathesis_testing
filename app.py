@@ -31,13 +31,12 @@ def create_app(test_config=None):
     def hello():
         if request.method == "GET":
             return "Hello world!"
-        else:
-            try:
-                data = request.get_json()
-                print(f"data: {data}")
-                return f"Hello {data['name']}"
-            except:
-                abort(400, "blah")
+        try:
+            data = request.get_json()
+            print(f"data: {data}")
+            return f"Hello {data['name']}"
+        except:
+            abort(400, "blah")
 
     return app
 
